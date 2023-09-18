@@ -1,13 +1,11 @@
-FROM node:20
+FROM node:16
 RUN apt-get update && apt-get install libvips-dev -y
 ENV NODE_ENV=development
 WORKDIR /opt/
 COPY ./package.json ./package-lock.json ./
 ENV PATH /opt/node/node_modules/.bin:$PATH
-#RUN yarn config set network-timeout 600000 -g && yarn install
-WORKDIR /opt/app
+RUN npm install --ignore-scripts=false --foreground-scripts --verbose sharp
 COPY ./ .
-RUN npm install esbuild
-RUN npm run build
-EXPOSE 3000
+WORKDIR /opt/app/
+EXPOSE 1337
 CMD ["npm","run","develop"]

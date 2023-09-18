@@ -1,0 +1,9 @@
+version : '3'
+
+services :
+  strapi4 :
+    container_name : 'phongsaton-strapi'
+    ports:
+      - 3000:1337
+    image : 'phongsatorn/strapi4:latest'
+    restart : 'unless-stopped'
