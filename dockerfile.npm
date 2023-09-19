@@ -1,11 +1,22 @@
-FROM node:16
+FROM node:20
+
 RUN apt-get update && apt-get install libvips-dev -y
-ENV NODE_ENV=development
+
 WORKDIR /opt/
+
+
 COPY ./package.json ./package-lock.json ./
+
 ENV PATH /opt/node/node_modules/.bin:$PATH
-RUN npm install --ignore-scripts=false --foreground-scripts --verbose sharp
-COPY ./ .
+
+
 WORKDIR /opt/app/
+
+COPY ./ .
+
+RUN npm install --platform=linux --arch=x64 sharp && npm install --ignore-scripts=false --foreground-scripts --verbose sharp
+RUN npm run build
+
 EXPOSE 1337
-CMD ["npm","run","develop"]
+
+CMD ["npm", "run", "develop"]

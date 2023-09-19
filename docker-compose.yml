@@ -2,7 +2,7 @@ version : '3'
 
 services :
   strapi4 :
-    container_name : 'phongsaton-strapi'
+    container_name : 'phongsatorn-strapi4'
     ports:
       - 3000:1337
     image : 'phongsatorn/strapi4:latest'
