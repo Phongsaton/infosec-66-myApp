@@ -5,5 +5,5 @@ services :
     container_name : 'phongsaton-strapi4'
     ports:
       - 3000:1337
-    image : 'phongsaton/strapi4:latest'
+    image : 'phongsaton/myapp:1.1.0'
     restart : 'unless-stopped'
